@@ -65,23 +65,32 @@ Goal: Improve efficiency in writing, debugging, and testing code.
 ✔️ Postman requests showing API responses.
 ✔️ Unit tests passing successfully.
 
+### Assignments
+- Create a CRUD API with spring mvc for a task management app
+- User can login with user name and password
+- user can add and remove tasks
+- users cannot remove other people's tasks
+- There is an admin role where user can remove all other users' tasks
+- Have unit test for adding, removing tasks
+
 ## Day 5-6: Debugging & Logs
 ### Goals
 - Add structured logging using SLF4J, Logback.
 - Practice debugging API response issues.
-- Simulate and fix common bugs like N+1 queries in Hibernate.
 
 ### Tasks
 
 - Add structured logging using SLF4J, Logback.
 - Practice debugging API response issues.
-- Simulate and fix N+1 query problems in Hibernate.
 
 ### 🎯 Expected Output
 ✔️ Application logs showing structured request-response flow.
 ✔️ Debugging session where an issue is identified and fixed.
 ✔️ Hibernate query optimization reducing unnecessary DB calls.
 
+### Assignment
+- Create a new java project, add logback, slf4j for logging
+- Set different log levels for different packages
 
 ## Day 7: Code Review & Best Practices
 ### Goals
@@ -100,6 +109,9 @@ Goal: Improve efficiency in writing, debugging, and testing code.
 ✔️ Improved design using appropriate patterns.
 ✔️ Constructive feedback on past PRs.
 
+### Assignments
+- Read this article about SOLID: https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design#interface-segregation-principle
+- Create code using Builder, Singleton (thread safe), Builder, Proxy, Visitor patterns
 
 
 # 📅 Week 2: Database & Performance Optimization
@@ -122,6 +134,43 @@ Goal: Learn to write efficient queries, avoid performance pitfalls, and optimize
 ✔️ Hibernate fetch strategy correctly fetching required data.
 ✔️ No unnecessary queries in API logs.
 
+### Assigments
+#### Using join
+Create a relational schema in PostgreSQL with at least 3 tables:
+```
+users (id, name, email, role_id)
+roles (id, name)
+orders (id, user_id, total_amount, created_at)
+```
+Write JOIN queries:
+
+- Fetch all users with their roles.
+- Fetch users along with their total orders.
+- Fetch users who have never placed an order.
+
+####  Implement transactions correctly in Java with JPA
+Create a Service Method in Spring Boot:
+
+- Implement a method that transfers money between two users.
+- Ensure ACID compliance using @Transactional.
+
+Introduce a failure:
+
+- Simulate a failure (e.g., throw an exception) in the middle of the transaction.
+- Verify whether partial updates happen or if rollback works.
+#### Understand Lazy vs. Eager Loading and prevent N+1 query problems.
+Modify the Schema:
+
+Use JPA to define User, Role, and Order entities.
+Define relationships (@OneToMany, @ManyToOne).
+Fetch Strategies Experiment:
+
+Set @OneToMany(fetch = FetchType.LAZY) and observe queries.
+Change to FetchType.EAGER and analyze the difference.
+Detect & Fix N+1 Queries:
+
+Check API logs for unnecessary queries.
+Optimize using @EntityGraph.
 
 
 ## Day 10-11: Hibernate Performance & Caching
@@ -130,6 +179,11 @@ Goal: Learn to write efficient queries, avoid performance pitfalls, and optimize
 -  Enable Hibernate SQL logging → Analyze generated queries.
 -  Use Redis or Caffeine caching to optimize read performance.
 -  Measure API response time with Spring Actuator & Postman.
+
+🎯 Expected Output
+✔️ Logs showing optimized Hibernate queries.
+✔️ API responses using cache for faster access.
+✔️ Spring Actuator displaying API response times.
 
 ## Day 12-13: Transactions & Error Handling
 ### Goals
